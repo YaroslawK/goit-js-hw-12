@@ -10,7 +10,8 @@ import { fetchImages } from './js/pixabay-api.js';
 
 const form = document.querySelector('.search-form');
 const searchInput = document.querySelector('.search-input');
-const loadButton = document.querySelector('.btn');
+
+
 
 form.addEventListener('submit', handleSubmit);
     

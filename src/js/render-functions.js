@@ -37,7 +37,8 @@ export function renderImages(images) {
         </li>
         `;
     }).join('');
-    galleryElement.innerHTML = imageElements;
+
+    galleryElement.insertAdjacentHTML('beforeend', imageElements);
     gallery.refresh();
 }
 
@@ -48,6 +49,7 @@ export function showLoader() {
 export function hideLoader() {
     document.querySelector('.loader').style.display = 'none';
 }
+
 window.addEventListener('load', () => {
     document.querySelector('.loader').style.display = 'block'; 
     setTimeout(() => {
