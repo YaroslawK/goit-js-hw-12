@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { renderImages } from './render-functions.js';
+import { searchInput } from '../main.js';
 
 
 const API_KEY = '43277181-ebb9172f58fa43bc64ca23581';
@@ -40,7 +41,9 @@ async function loadMore() {
     loadButton.disabled = true;
 
     try {
-        const data = await fetchImages(page);
+        const searchQuery = searchInput.value.trim();
+        const data = await fetchImages(searchQuery);
+        console.log(data);
         gallery.insertAdjacentHTML('beforeend', renderImages(data));
         loadButton.disabled = false;
     } catch (error) {

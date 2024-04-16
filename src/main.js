@@ -9,7 +9,7 @@ import { clearGallery, renderImages, showLoader, hideLoader } from './js/render-
 import { fetchImages } from './js/pixabay-api.js';
 
 const form = document.querySelector('.search-form');
-const searchInput = document.querySelector('.search-input');
+export const searchInput = document.querySelector('.search-input');
 
 
 
@@ -18,6 +18,7 @@ form.addEventListener('submit', handleSubmit);
 async function handleSubmit(event) {
     event.preventDefault();
     const searchQuery = searchInput.value.trim();
+    console.log(searchQuery);
     if (!searchQuery) {
         iziToast.error({
             title: 'Error',
@@ -36,7 +37,8 @@ async function handleSubmit(event) {
                 });
             } else {
                 renderImages(images);
-            }
+        }
+
         }
         catch (error) {
             iziToast.error({
@@ -48,4 +50,3 @@ async function handleSubmit(event) {
             hideLoader();
         };
 }
-
