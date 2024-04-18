@@ -12,13 +12,13 @@ const form = document.querySelector('.search-form');
 export const searchInput = document.querySelector('.search-input');
 
 
-
 form.addEventListener('submit', handleSubmit);
-    
+
+
+
 async function handleSubmit(event) {
     event.preventDefault();
     const searchQuery = searchInput.value.trim();
-    console.log(searchQuery);
     if (!searchQuery) {
         iziToast.error({
             title: 'Error',
@@ -29,7 +29,7 @@ async function handleSubmit(event) {
     try{
     showLoader();
     clearGallery();
-    const images = await fetchImages(searchQuery)
+        const images = await fetchImages(searchQuery);
             if (images.length === 0) {
                 iziToast.error({
                     title: 'Error',
@@ -48,5 +48,6 @@ async function handleSubmit(event) {
         }
         finally{
             hideLoader();
-        };
+    };
+    
 }

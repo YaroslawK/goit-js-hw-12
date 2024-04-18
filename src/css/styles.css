@@ -39,10 +39,14 @@
 .image {
   width: 360px;
   height: 200px;
+  
+  margin-bottom: 10px;
 }
 
 .item {
   margin-right: 24px;
+  margin-bottom: 24px;
+  border: solid 2px black;
 }
 
 .container {
@@ -72,7 +76,6 @@
 
 .stats-list-item {
   border-radius: 10%;
-  border: solid 2px black;
 }
 
 .loader {

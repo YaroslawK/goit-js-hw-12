@@ -8,6 +8,12 @@ const loadButton = document.querySelector('.btn');
 const gallery = document.querySelector('.gallery')
 loadButton.addEventListener('click', loadMore);
 let page = 1;
+const forma = document.querySelector('.search-form')
+forma.addEventListener('submit', () => {
+    page = 1
+});
+
+console.log(page);
 
 export async function fetchImages(searchQuery) {
     const params = new URLSearchParams({
@@ -16,7 +22,7 @@ export async function fetchImages(searchQuery) {
         image_type: 'photo',
         orientation: 'horizontal',
         safesearch: true,
-        per_page: 15,
+        per_page: 20,
         page: page
     })
     
@@ -25,9 +31,9 @@ export async function fetchImages(searchQuery) {
     try {
         
         const response = await axios(url);
-        if(response.data.totalHits <= 500){
+        // if(response.data.totalHits/per_page === 0){
         loadButton.classList.replace('btn-hidden', 'btn');
-        }
+        // }
         return response.data.hits;
         }
         catch(error){
@@ -35,19 +41,18 @@ export async function fetchImages(searchQuery) {
         };
 }
 
-async function loadMore() {
-    page += 1;
+ async function loadMore() {
+     page += 1;
     console.log(page);
-    loadButton.disabled = true;
+     loadButton.disabled = true;
 
     try {
         const searchQuery = searchInput.value.trim();
         const data = await fetchImages(searchQuery);
-        console.log(data);
         gallery.insertAdjacentHTML('beforeend', renderImages(data));
         loadButton.disabled = false;
+
     } catch (error) {
         throw new Error('Failed to fetch images');
     }
-
 }

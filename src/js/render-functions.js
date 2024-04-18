@@ -38,8 +38,12 @@ export function renderImages(images) {
         `;
     }).join('');
 
+
     galleryElement.insertAdjacentHTML('beforeend', imageElements);
     gallery.refresh();
+
+    
+    
 }
 
 export function showLoader() {
