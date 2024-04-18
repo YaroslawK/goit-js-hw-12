@@ -27,8 +27,6 @@ export async function fetchImages(searchQuery) {
         const response = await axios(url);
        
         loadButton.classList.replace('btn-hidden', 'btn');
-        console.log(Math.floor(response.data.totalHits / per_page));
-        console.log(page);
          if (Math.floor(response.data.totalHits/per_page) === page) {
              loadButton.classList.replace('btn', 'btn-hidden');
          }

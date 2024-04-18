@@ -8,22 +8,19 @@ import { clearGallery, renderImages, showLoader, hideLoader } from './js/render-
 
 import { fetchImages } from './js/pixabay-api.js';
 
-const gallery = document.querySelector('.gallery')
-
 const loadButton = document.querySelector('.btn')
 
 const form = document.querySelector('.search-form');
-export const searchInput = document.querySelector('.search-input');
+const searchInput = document.querySelector('.search-input');
 
 let page = 1;
-console.log(page);
-const forma = document.querySelector('.search-form')
-forma.addEventListener('submit', () => {
+form.addEventListener('submit', () => {
     clearGallery();
-    page = 1
+    page = 1;
 });
 
 form.addEventListener('submit', handleSubmit);
+loadButton.addEventListener('click', handleSubmit);
 
 
 
@@ -62,5 +59,5 @@ async function handleSubmit(event) {
     
 }
 
-loadButton.addEventListener('click', handleSubmit);
+
 
