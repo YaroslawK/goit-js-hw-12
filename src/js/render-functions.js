@@ -41,6 +41,7 @@ export function renderImages(images) {
 
     galleryElement.insertAdjacentHTML('beforeend', imageElements);
     gallery.refresh();
+    return imageElements
 
     
     
