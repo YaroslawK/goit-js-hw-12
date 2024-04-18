@@ -11,11 +11,12 @@ import { fetchImages } from './js/pixabay-api.js';
 const gallery = document.querySelector('.gallery')
 
 const loadButton = document.querySelector('.btn')
-console.log(loadButton);
+
 const form = document.querySelector('.search-form');
 export const searchInput = document.querySelector('.search-input');
 
 let page = 1;
+console.log(page);
 const forma = document.querySelector('.search-form')
 forma.addEventListener('submit', () => {
     clearGallery();
@@ -27,11 +28,7 @@ form.addEventListener('submit', handleSubmit);
 
 
 async function handleSubmit(event) {
-    // let page = 1;
-    // page += 1;
-    // console.log(page);
-    // gallery.insertAdjacentHTML('beforeend', renderImages(data));
-    // console.log(data);
+
     event.preventDefault();
     const searchQuery = searchInput.value.trim();
     if (!searchQuery) {
