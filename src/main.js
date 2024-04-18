@@ -8,15 +8,30 @@ import { clearGallery, renderImages, showLoader, hideLoader } from './js/render-
 
 import { fetchImages } from './js/pixabay-api.js';
 
+const gallery = document.querySelector('.gallery')
+
+const loadButton = document.querySelector('.btn')
+console.log(loadButton);
 const form = document.querySelector('.search-form');
 export const searchInput = document.querySelector('.search-input');
 
+let page = 1;
+const forma = document.querySelector('.search-form')
+forma.addEventListener('submit', () => {
+    clearGallery();
+    page = 1
+});
 
 form.addEventListener('submit', handleSubmit);
 
 
 
 async function handleSubmit(event) {
+    // let page = 1;
+    // page += 1;
+    // console.log(page);
+    // gallery.insertAdjacentHTML('beforeend', renderImages(data));
+    // console.log(data);
     event.preventDefault();
     const searchQuery = searchInput.value.trim();
     if (!searchQuery) {
@@ -28,7 +43,6 @@ async function handleSubmit(event) {
     }
     try{
     showLoader();
-    clearGallery();
         const images = await fetchImages(searchQuery);
             if (images.length === 0) {
                 iziToast.error({
@@ -38,7 +52,6 @@ async function handleSubmit(event) {
             } else {
                 renderImages(images);
         }
-
         }
         catch (error) {
             iziToast.error({
@@ -51,4 +64,6 @@ async function handleSubmit(event) {
     };
     
 }
+
+loadButton.addEventListener('click', handleSubmit);
 
