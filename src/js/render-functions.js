@@ -54,9 +54,15 @@ export function renderImages(images) {
 export function showLoader() {
     document.querySelector('.loader').style.display = 'block';
 }
+export function showButton() {
+    document.querySelector('.btn').style.display = 'block';
+}
 
 export function hideLoader() {
     document.querySelector('.loader').style.display = 'none';
+}
+export function hideButton() {
+    document.querySelector('.btn').style.display = 'none';
 }
 
 window.addEventListener('load', () => {

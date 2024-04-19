@@ -4,7 +4,7 @@ import "izitoast/dist/css/iziToast.min.css";
 
 
 
-import { clearGallery, renderImages, showLoader, hideLoader } from './js/render-functions';
+import { clearGallery, renderImages, showLoader, hideLoader, showButton, hideButton } from './js/render-functions';
 
 import { fetchImages } from './js/pixabay-api.js';
 
@@ -17,6 +17,7 @@ let page = 1;
 form.addEventListener('submit', () => {
     clearGallery();
     page = 1;
+    hideButton()
 });
 
 form.addEventListener('submit', handleSubmit);
@@ -36,7 +37,7 @@ async function handleSubmit(event) {
         return;
     }
     try{
-    showLoader();
+        showLoader();
 
         const images = await fetchImages(searchQuery, page);
            
@@ -47,7 +48,8 @@ async function handleSubmit(event) {
                 });
         } else {
         
-                renderImages(images);
+            renderImages(images);
+            showButton()
         }
         page += 1;
          if (page !== 2) {
