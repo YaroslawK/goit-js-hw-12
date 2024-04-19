@@ -25,18 +25,20 @@ export async function fetchImages(searchQuery) {
         page += 1;
         
         const response = await axios(url);
-       
+   
         loadButton.classList.replace('btn-hidden', 'btn');
          if (Math.floor(response.data.totalHits/per_page) === page) {
              loadButton.classList.replace('btn', 'btn-hidden');
-         }
-
-        return response.data.hits;
+        return;
+        }
+        
+           
+        return response.data.hits
         }
         catch(error){
-            throw new Error('Failed to fetch images');
+            throw new Error('Failed to fetch images. Please try again later!');
         };
 }
 
 
-
+  

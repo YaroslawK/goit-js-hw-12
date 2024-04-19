@@ -37,20 +37,34 @@ async function handleSubmit(event) {
     }
     try{
     showLoader();
-        const images = await fetchImages(searchQuery);
-            if (images.length === 0) {
+
+        const images = await fetchImages(searchQuery, page);
+           
+        if (images.length === 0) {
                 iziToast.error({
                     title: 'Error',
                     message: 'Sorry, there are no images matching your search query. Please try again!',
                 });
-            } else {
+        } else {
+        
                 renderImages(images);
         }
+        page += 1;
+         if (page !== 2) {
+            const { height: cardHeight } = document
+                .querySelector('.gallery')
+                .firstElementChild.getBoundingClientRect();
+            window.scrollBy({
+            left: 0,
+            top: cardHeight * 2,
+            behavior: 'smooth',
+    });
+            }
         }
         catch (error) {
             iziToast.error({
                 title: 'Error',
-                message: 'Failed to fetch images. Please try again later!',
+                message: 'We are sorry, but you have reached the end of search results.',
             });
         }
         finally{
