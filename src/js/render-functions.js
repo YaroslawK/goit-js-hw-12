@@ -2,7 +2,7 @@ import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const gallery = new SimpleLightbox('.gallery a');
-
+const loadButton = document.querySelector('.btn');
 export function clearGallery() {
     const galleryElement = document.querySelector('.gallery');
     galleryElement.innerHTML = '';
@@ -55,14 +55,15 @@ export function showLoader() {
     document.querySelector('.loader').style.display = 'block';
 }
 export function showButton() {
-    document.querySelector('.btn').style.display = 'block';
+    loadButton.classList.replace('btn-hidden', 'btn');
 }
 
 export function hideLoader() {
     document.querySelector('.loader').style.display = 'none';
+    
 }
 export function hideButton() {
-    document.querySelector('.btn').style.display = 'none';
+     loadButton.classList.replace('btn', 'btn-hidden');
 }
 
 window.addEventListener('load', () => {

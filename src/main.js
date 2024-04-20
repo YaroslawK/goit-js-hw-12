@@ -3,30 +3,32 @@ import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 
 
-
-import { clearGallery, renderImages, showLoader, hideLoader, showButton, hideButton } from './js/render-functions';
+import { clearGallery, renderImages, showLoader, hideLoader, hideButton, showButton } from './js/render-functions';
 
 import { fetchImages } from './js/pixabay-api.js';
 
-const loadButton = document.querySelector('.btn')
+const loadButton = document.querySelector('.btn');
 
 const form = document.querySelector('.search-form');
 const searchInput = document.querySelector('.search-input');
-
 let page = 1;
-form.addEventListener('submit', () => {
-    clearGallery();
-    page = 1;
-    hideButton()
-});
 
-form.addEventListener('submit', handleSubmit);
+
+
+const formSubmit = (event) => {
+    page = 1;
+    clearGallery();
+    handleSubmit(event);
+    hideButton();
+    };
+
+form.addEventListener('submit', formSubmit);
 loadButton.addEventListener('click', handleSubmit);
 
 
 
 async function handleSubmit(event) {
-
+    
     event.preventDefault();
     const searchQuery = searchInput.value.trim();
     if (!searchQuery) {
@@ -36,7 +38,7 @@ async function handleSubmit(event) {
         });
         return;
     }
-    try{
+    try { 
         showLoader();
 
         const images = await fetchImages(searchQuery, page);
@@ -49,9 +51,13 @@ async function handleSubmit(event) {
         } else {
         
             renderImages(images);
-            showButton()
+        
+                showButton()
+            if (page > 33) {
+                hideButton();
+            }
         }
-        page += 1;
+        page++;
          if (page !== 2) {
             const { height: cardHeight } = document
                 .querySelector('.gallery')
