@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 const API_KEY = '43277181-ebb9172f58fa43bc64ca23581';
-const loadButton = document.querySelector('.btn');
 
 const per_page = 15;
 
@@ -22,14 +21,7 @@ export async function fetchImages(searchQuery, page) {
     const url = `https://pixabay.com/api/?${params}`;
     try {     
         const response = await axios(url);
-        const pageNumber = response.data.totalHits / per_page;
-
-        loadButton.classList.replace('btn-hidden', 'btn');
-             if (Math.ceil(pageNumber) <= page) {
-                 loadButton.classList.replace('btn', 'btn-hidden');
-                 
-        }  
-        return response.data.hits
+        return response.data;
         }
         catch(error){
             throw new Error('Failed to fetch images. Please try again later!');

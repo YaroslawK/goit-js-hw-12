@@ -1,6 +1,7 @@
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
+
 const gallery = new SimpleLightbox('.gallery a');
 const loadButton = document.querySelector('.btn');
 export function clearGallery() {
@@ -8,9 +9,9 @@ export function clearGallery() {
     galleryElement.innerHTML = '';
 }
 
-export function renderImages(images) {
+export function renderImages(imagesHits) {
     const galleryElement = document.querySelector('.gallery');
-    const imageElements = images.map(image => {
+    const imageElements = imagesHits.map(image => {
         return `
         <li class="item">
             <a href="${image.largeImageURL}">
@@ -63,7 +64,7 @@ export function hideLoader() {
     
 }
 export function hideButton() {
-     loadButton.classList.replace('btn', 'btn-hidden');
+    loadButton.classList.replace('btn', 'btn-hidden');
 }
 
 window.addEventListener('load', () => {
